@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Poker Chip Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Home Poker Chip Management</h1>
+      <p>Run your home game, track chips, and carry unsettled balances forward.</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>1) Group Creation & Secret Join</h2>
+        <form id="create-group-form" class="grid-form">
+          <label>
+            Group Name
+            <input id="group-name" required placeholder="Friday Night Hold'em" />
+          </label>
+          <label>
+            Secret Word
+            <input id="group-secret" required placeholder="royalflush" />
+          </label>
+          <button type="submit">Create Group</button>
+        </form>
+
+        <form id="join-group-form" class="grid-form join-form">
+          <label>
+            Group
+            <select id="join-group-id" required></select>
+          </label>
+          <label>
+            Secret Word
+            <input id="join-secret" required placeholder="Enter secret word" />
+          </label>
+          <label>
+            User
+            <select id="join-user-id" required></select>
+          </label>
+          <button type="submit">Join Group</button>
+        </form>
+
+        <div id="group-list" class="list"></div>
+      </section>
+
+      <section class="card">
+        <h2>2) User Management</h2>
+        <form id="create-user-form" class="grid-form">
+          <label>
+            Name
+            <input id="user-name" required placeholder="Alice" />
+          </label>
+          <label>
+            Nickname
+            <input id="user-nickname" placeholder="A-Game" />
+          </label>
+          <button type="submit">Add User</button>
+        </form>
+        <div id="user-list" class="list"></div>
+      </section>
+
+      <section class="card">
+        <h2>3) Game Management (Banker)</h2>
+        <form id="create-game-form" class="grid-form">
+          <label>
+            Group
+            <select id="game-group-id" required></select>
+          </label>
+          <label>
+            Game Name
+            <input id="game-name" required placeholder="Tournament #14" />
+          </label>
+          <label>
+            Banker
+            <select id="game-banker-id" required></select>
+          </label>
+          <button type="submit">Create Game</button>
+        </form>
+
+        <form id="chip-entry-form" class="grid-form">
+          <label>
+            Open Game
+            <select id="chip-game-id" required></select>
+          </label>
+          <label>
+            Player
+            <select id="chip-user-id" required></select>
+          </label>
+          <label>
+            Buy-in
+            <input id="chip-buyin" type="number" min="0" step="0.01" value="0" />
+          </label>
+          <label>
+            Cash-out
+            <input id="chip-cashout" type="number" min="0" step="0.01" value="0" />
+          </label>
+          <label>
+            Chip Adjustment (+/-)
+            <input id="chip-adjustment" type="number" step="0.01" value="0" />
+          </label>
+          <button type="submit">Record Entry</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>4 & 5) Chip + Account Management</h2>
+        <p class="hint">Balances auto-carry from unsettled games. Positive means player is owed.</p>
+        <div id="account-summary" class="summary-grid"></div>
+
+        <form id="settlement-form" class="grid-form">
+          <label>
+            Debtor
+            <select id="settle-from" required></select>
+          </label>
+          <label>
+            Creditor
+            <select id="settle-to" required></select>
+          </label>
+          <label>
+            Amount
+            <input id="settle-amount" type="number" min="0.01" step="0.01" required />
+          </label>
+          <button type="submit">Record Settlement</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>6) Game History</h2>
+        <div id="open-games" class="list"></div>
+        <h3>Closed Games</h3>
+        <div id="history-list" class="list"></div>
+      </section>
+    </main>
+
+    <template id="list-item-template">
+      <div class="list-item"></div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
